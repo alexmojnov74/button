@@ -1,0 +1,121 @@
+!DOCTYPE html>
+<html lang="en">
+
+<body>
+<h1></h1>
+
+<form id="formABC" action="#" method="POST">
+    <input type="submit" id="btnSubmit" value="Submit"></input>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+
+<script>
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBy01EpED3fsDUCE2yb10MkDGe3Q5rOJXc",
+    authDomain: "my-first-project-73fae.firebaseapp.com",
+    databaseURL: "https://my-first-project-73fae.firebaseio.com",
+    projectId: "my-first-project-73fae",
+    storageBucket: "my-first-project-73fae.appspot.com",
+    messagingSenderId: "211265231075",
+    appId: "1:211265231075:web:0fa93c966946b98a"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+
+var database = firebase.database();
+
+
+
+$("#btnSubmit").on("click", function(event) {
+event.preventDefault();
+
+var time = new Date();                
+                  $('#time-holder').val(time.toDateString());  
+                  $("#btnSubmit").attr("disabled", true);
+
+
+database.ref().push(newClick);
+
+database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+
+
+
+// Click date and time
+var theClick = moment.unix(trainFirstTime).format("LT");
+console.log('the Click" = ' + trainFirstTimePretty);
+
+// Current Time
+var currentTime = moment();
+console.log("Current Time: " + moment(currentTime).format("hh:mm"));
+
+// Difference between the times
+var diffTime = moment().diff(moment.unix(trainFirstTime), "minutes"); 
+
+console.log("Difference in Time (diffTime): " + diffTime);
+//The console is saying NaN.
+
+// Time apart (remainder)
+var tRemainder = diffTime % trainFrequency;
+console.log('tRemainder = ' + tRemainder);
+//The console is saying NaN.
+
+// Minute Until Train
+var tMinutesTillTrain = trainFrequency - tRemainder;
+console.log("Minutes Until Train: " + tMinutesTillTrain);
+//The console is saying NaN.
+
+// Next Train
+var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+
+var nextTrainPretty = moment(nextTrain).format("LT");
+
+console.log("Arrival Time: " + moment(nextTrain).format("hh:mm"));
+console.log("Arrival Time Pretty: " + nextTrainPretty);
+
+
+
+
+
+
+
+
+$(
+    function(){
+
+        $('#time').click(function(){
+                  
+        });
+        console.log()
+    }
+);
+
+
+
+
+
+    // $(document).ready(function () {
+
+    //     var clickDate = new Date();
+        
+    //     $("#formABC").submit(function (e) {
+
+    //         //stop submitting the form to see the disabled button effect
+    //         e.preventDefault();
+
+    //         //disable the submit button
+    //         $("#btnSubmit").attr("disabled", true);
+
+    //         return true;
+
+    //     });
+    // });
+</script>
+
+</body>
+</html>
